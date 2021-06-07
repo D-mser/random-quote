@@ -1,6 +1,6 @@
 import React from "react";
-import Card from "react-bootstrap/Card";
 import Quote from "./Quote";
+import Card from "react-bootstrap/Card";
 
 class Box extends React.Component {
   constructor(props) {
@@ -8,7 +8,16 @@ class Box extends React.Component {
     this.state = {
       isLoaded: false,
       quotes: [],
+      error: null,
+      index: 0,
     };
+    this.handleNextQuote = this.handleNextQuote.bind(this);
+  }
+
+  handleNextQuote() {
+    this.setState((state) => ({
+      index: Math.floor(Math.random() * state.quotes.length),
+    }));
   }
 
   componentDidMount() {
@@ -21,36 +30,34 @@ class Box extends React.Component {
           this.setState({
             isLoaded: true,
             quotes: result.quotes,
+            index: Math.floor(Math.random() * result.quotes.length),
           });
         },
         (error) => {
           this.setState({
             error: null,
             isLoaded: true,
-            error,
           });
         }
       );
   }
 
   render() {
-    const { error, isLoaded, quotes } = this.state;
+    const { error, isLoaded, quotes, index } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
       return <div>Loading...</div>;
     } else {
-      const noQuotes = quotes.length;
-      const randomIndex = Math.floor(Math.random() * noQuotes);
-
-      console.log(quotes[randomIndex]);
-
       return (
         <div id="quote-box">
-          <Card>
+          <Card border="info" style={{ width: "36rem" }}>
             <Card.Header>Quote</Card.Header>
             <Card.Body>
-              <Quote quote={quotes[randomIndex]} />
+              <Quote
+                quote={quotes[index]}
+                handleNextQuote={this.handleNextQuote}
+              />
             </Card.Body>
           </Card>
         </div>

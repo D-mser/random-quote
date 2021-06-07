@@ -8,6 +8,10 @@
   transform: translate(-50%, -50%);
 }
 
+body {
+  background-color: rgb(23, 163, 184);
+}
+
 #quote-box {
   @include vh-centered-content;
 }
