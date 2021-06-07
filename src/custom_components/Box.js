@@ -1,6 +1,10 @@
 import React from "react";
 import Quote from "./Quote";
+import Icon from "./Icon";
 import Card from "react-bootstrap/Card";
+
+const SOURCE =
+  "https://gist.githubusercontent.com/nasrulhazim/54b659e43b1035215cd0ba1d4577ee80/raw/e3c6895ce42069f0ee7e991229064f167fe8ccdc/quotes.json";
 
 class Box extends React.Component {
   constructor(props) {
@@ -21,9 +25,7 @@ class Box extends React.Component {
   }
 
   componentDidMount() {
-    fetch(
-      "https://gist.githubusercontent.com/nasrulhazim/54b659e43b1035215cd0ba1d4577ee80/raw/e3c6895ce42069f0ee7e991229064f167fe8ccdc/quotes.json"
-    )
+    fetch(SOURCE)
       .then((res) => res.json())
       .then(
         (result) => {
@@ -52,7 +54,11 @@ class Box extends React.Component {
       return (
         <div id="quote-box">
           <Card border="info" style={{ width: "50vw" }}>
-            <Card.Header>Quote</Card.Header>
+            <Card.Header>
+              <Card.Link href="https://twitter.com/intent/tweet">
+                <Icon icon="twitter" />
+              </Card.Link>
+            </Card.Header>
             <Card.Body>
               <Quote
                 quote={quotes[index]}
