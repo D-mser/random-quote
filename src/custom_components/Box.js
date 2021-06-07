@@ -51,7 +51,7 @@ class Box extends React.Component {
     } else {
       return (
         <div id="quote-box">
-          <Card border="info" style={{ width: "36rem" }}>
+          <Card border="info" style={{ width: "50vw" }}>
             <Card.Header>Quote</Card.Header>
             <Card.Body>
               <Quote
