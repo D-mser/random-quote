@@ -15,52 +15,60 @@ const useStyles = makeStyles({
   title: {
     fontSize: 14,
   },
+  box: {
+    transform: "translate(-50%,-50%)",
+    width: "50%",
+    heigth: "50%",
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    marginRight: "-50%",
+  },
 });
 
 export default function SimpleCard(props) {
   const classes = useStyles();
   return (
     <Box
-      display="flex"
       component="div"
-      justifyContent="center"
-      alignItems="center"
       minHeight="100vh"
       style={{ backgroundColor: "#F8F8F8" }}
     >
-      <Card className={classes.root} style={{ backgroundColor: props.color }}>
-        <CardContent>
-          <Typography
-            className={classes.title}
-            color="textSecondary"
-            gutterBottom
-            style={{ color: props.textColor }}
-          >
-            Quote of the Day
-          </Typography>
-          {props.children(props)}
-        </CardContent>
-        <CardActions>
-          <Button
-            size="small"
-            endIcon={<FormatQuoteIcon />}
-            onClick={() => {
-              props.nextQuote();
-            }}
-            style={{ color: props.textColor }}
-          >
-            Next quote
-          </Button>
-          <Button
-            size="small"
-            startIcon={<TwitterIcon />}
-            href="https://twitter.com/intent/tweet"
-            style={{ color: props.textColor }}
-          >
-            Tweet
-          </Button>
-        </CardActions>
-      </Card>
+      <Box className={classes.box}>
+        <Card className={classes.root} style={{ backgroundColor: props.color }}>
+          <CardContent>
+            <Typography
+              className={classes.title}
+              color="textSecondary"
+              gutterBottom
+              style={{ color: props.textColor }}
+            >
+              Quote of the Day
+            </Typography>
+            {props.children(props)}
+          </CardContent>
+          <CardActions>
+            <Button
+              size="small"
+              endIcon={<FormatQuoteIcon />}
+              onClick={() => {
+                props.nextQuote();
+              }}
+              style={{ color: props.textColor }}
+            >
+              Next quote
+            </Button>
+            <Button
+              size="small"
+              startIcon={<TwitterIcon />}
+              href="https://twitter.com/intent/tweet"
+              style={{ color: props.textColor }}
+            >
+              Tweet
+            </Button>
+          </CardActions>
+        </Card>
+      </Box>
     </Box>
   );
 }
