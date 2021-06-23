@@ -34,10 +34,11 @@ export default function SimpleCard(props) {
             className={classes.title}
             color="textSecondary"
             gutterBottom
+            style={{ color: props.textColor }}
           >
             Quote of the Day
           </Typography>
-          {props.children(props.quote)}
+          {props.children(props)}
         </CardContent>
         <CardActions>
           <Button
@@ -46,6 +47,7 @@ export default function SimpleCard(props) {
             onClick={() => {
               props.nextQuote();
             }}
+            style={{ color: props.textColor }}
           >
             Next quote
           </Button>
@@ -53,6 +55,7 @@ export default function SimpleCard(props) {
             size="small"
             startIcon={<TwitterIcon />}
             href="https://twitter.com/intent/tweet"
+            style={{ color: props.textColor }}
           >
             Tweet
           </Button>
