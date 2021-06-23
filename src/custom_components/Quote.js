@@ -1,18 +1,15 @@
 import React from "react";
-import { Button, Card } from "react-bootstrap";
+import Typography from "@material-ui/core/Typography";
 
-function Quote(props) {
+export default function Quote(props) {
   return (
-    <blockquote className="blockquote mb-0">
-      <Card.Text>{props.quote.quote}</Card.Text>
-      <Card.Text className="blockquote-footer" text="white">
+    <>
+      <Typography variant="h4" component="h4" color="textPrimary">
+        {props.quote.quote}
+      </Typography>
+      <Typography variant="h6" component="h6" color="textSecondary">
         {props.quote.author}
-      </Card.Text>
-      <Button onClick={props.handleNextQuote} variant="outline-info">
-        Next Quote
-      </Button>
-    </blockquote>
+      </Typography>
+    </>
   );
 }
-
-export default Quote;
